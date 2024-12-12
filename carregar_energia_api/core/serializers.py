@@ -7,6 +7,7 @@ from .models import InformacoesCliente
 
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
+        
         model = Usuario
         fields = ['id', 
                   'nome', 
