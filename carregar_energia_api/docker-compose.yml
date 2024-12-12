@@ -6,7 +6,9 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
-      - 
+      - /home/garcia_simao/Documentos/Projectos_de_trabalho:/code/Documentos/Projectos_de_trabalho
+
+      
 
     ports:
       - "8000:8000"

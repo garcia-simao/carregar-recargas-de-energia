@@ -18,7 +18,9 @@ from firebase_admin import credentials
 
 #caminho para o arquivo json 
 BASE_DIR = Path(__file__).resolve().parent.parent
-FIREBASE_CREDENTIALS = BASE_DIR /"chave-do-fire-base.json"
+FIREBASE_CREDENTIALS = "/code/Documentos/Projectos_de_trabalho/chave_firebase/chave-do-fire-base.json"
+
+
 
 #inicializar o firebase admin sdk
 cred = credentials.Certificate(FIREBASE_CREDENTIALS)
