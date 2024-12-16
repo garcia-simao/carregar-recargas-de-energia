@@ -30,7 +30,7 @@ FIREBASE_CREDENTIALS2 = '/home/garcia_simao/Documentos/Projectos_de_trabalho/cha
 
 
 #inicializar o firebase admin sdk
-cred = credentials.Certificate(FIREBASE_CREDENTIALS2)
+cred = credentials.Certificate(FIREBASE_CREDENTIALS)
 firebase_admin.initialize_app(cred)
 
 
