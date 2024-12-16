@@ -3,6 +3,10 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from firebase_admin import firestore
 
+
+
+
+
 class Usuario(models.Model):
     nome = models.CharField(max_length=50)
     sobrenome = models.CharField(max_length=50)
@@ -15,10 +19,7 @@ class Usuario(models.Model):
     numero_do_contador = models.IntegerField()
     data_criacao = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return self.nome
     
-
 class CarregarRecarga(models.Model):
     id_do_usuario = models.ForeignKey(Usuario, on_delete = models.CASCADE)
     codigo_da_recarga = models.IntegerField()

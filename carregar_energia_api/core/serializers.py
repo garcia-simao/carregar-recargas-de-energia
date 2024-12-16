@@ -5,9 +5,9 @@ from .models import InformacoesCliente
 
 
 
+
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
-        
         model = Usuario
         fields = ['id', 
                   'nome', 
@@ -57,5 +57,4 @@ class InformacoesClienteSerializer(serializers.ModelSerializer):
                   'status_debito_directo',
                   'iban',
                   'limite_de_carregamento_mensal', 
-                  'data_criacao',
-                  ]
+                  'data_criacao']

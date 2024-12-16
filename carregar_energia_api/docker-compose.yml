@@ -3,12 +3,9 @@ version: '3'
 services:
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8004
     volumes:
       - .:/code
-      - /home/garcia_simao/Documentos/Projectos_de_trabalho:/code/Documentos/Projectos_de_trabalho
-
-      
 
     ports:
-      - "8000:8000"
+      - "8004:8004"
