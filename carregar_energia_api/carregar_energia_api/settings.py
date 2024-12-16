@@ -18,12 +18,18 @@ from firebase_admin import credentials
 
 #caminho para o arquivo json 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+#Caminho para executar o container com docker-compose up
 FIREBASE_CREDENTIALS = "/code/Documentos/Projectos_de_trabalho/chave_firebase/chave-do-fire-base.json"
+
+#caminho para executar com python3 manage.py
+FIREBASE_CREDENTIALS2 = '/home/garcia_simao/Documentos/Projectos_de_trabalho/chave_firebase/chave-do-fire-base.json'
+
 
 
 
 #inicializar o firebase admin sdk
-cred = credentials.Certificate(FIREBASE_CREDENTIALS)
+cred = credentials.Certificate(FIREBASE_CREDENTIALS2)
 firebase_admin.initialize_app(cred)
 
 
