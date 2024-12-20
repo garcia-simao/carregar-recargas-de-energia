@@ -19,7 +19,11 @@ class Usuario(models.Model):
     numero_do_contador = models.IntegerField()
     data_criacao = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.nome
     
+
+
 class CarregarRecarga(models.Model):
     id_do_usuario = models.ForeignKey(Usuario, on_delete = models.CASCADE)
     codigo_da_recarga = models.IntegerField()
