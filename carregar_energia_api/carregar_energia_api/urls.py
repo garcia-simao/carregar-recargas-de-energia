@@ -6,6 +6,7 @@ from rest_framework import routers, serializers, viewsets
 from core.views import UsuarioViewSet
 from core.views import CarregarRecargaViewSet
 from core.views import InformacoesClienteViewSet
+from core.views import CustomLoginView
 
 
 
@@ -17,5 +18,6 @@ router.register(r'informacoes-cliente', InformacoesClienteViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include(router.urls)),
+    path('login/', CustomLoginView.as_view(), name='custom-login'),
     path('api-auth',include('rest_framework.urls')),
 ]

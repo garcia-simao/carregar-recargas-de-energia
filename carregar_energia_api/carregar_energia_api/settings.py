@@ -65,6 +65,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'rest_framework',
+    'dj_rest_auth',
+    'rest_framework.authtoken', 
 ]
 
 MIDDLEWARE = [
@@ -128,6 +130,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    )
+
+   
+}
+
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     # Adicione outros backends de autenticação, se necessário
@@ -147,7 +160,42 @@ USE_I18N = True
 
 USE_TZ = True
 
+CORS_ALLOW_ALL_ORIGINS = True
 
+AUTH_USER_MODEL = 'core.Usuario'
+
+TOKEN_AUTH_HEADER = 'Bearer'
+
+
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+]
+
+
+
+
+SIMPLE_JWT = {
+
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=20),
+    'REFRESH_TOKEN_LIFETIME': timedelta(minutes=20),
+}
+
+
+DJ_REST_AUTH_SERIALIZERS = {
+    'LOGIN_SERIALIZER': 'core.serializers.CustomLoginSerializer'
+}
+
+
+DJ_REST_AUTH = {
+    # ... outras configurações ...
+
+    # Especifique sua função personalizada de criação de tokens
+    'TOKEN_CREATOR': 'core.utils.default_create_token',
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

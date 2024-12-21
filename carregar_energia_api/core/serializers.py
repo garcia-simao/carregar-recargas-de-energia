@@ -2,7 +2,8 @@ from rest_framework import serializers
 from .models import Usuario
 from .models import CarregarRecarga
 from .models import InformacoesCliente
-
+from dj_rest_auth.serializers import LoginSerializer
+from django.contrib.auth import authenticate, get_user_model
 
 
 
@@ -20,6 +21,58 @@ class UsuarioSerializer(serializers.ModelSerializer):
                   'numero_de_conta',
                   'numero_do_contador',
                   'data_criacao']
+
+
+class CustomLoginSerializer(LoginSerializer):
+    username=None
+    
+    class Meta:
+        model = Usuario
+        fields = ['id',
+                  'nome',
+                  'email',
+                  'sobrenome',
+                  'endereco',
+                  'telefone',
+                  'nif',
+                  ]
+
+
+    def validate(self, data):
+        email = data.get('email')
+        senha = data.get('password')
+
+        # Verifica se o e-mail e senha são fornecidos
+        if email and senha:
+            # Autentica o usuário
+            user = authenticate(request=self.context.get('request'), username=email, password=senha)
+
+            # Se a autenticação falhar, levante a exceção personalizada
+            if user is None:
+                if not self.user_exists(email):
+                    raise serializers.ValidationError({'email': 'E-mail incorreto.'})
+                else:
+                    raise serializers.ValidationError({'senha': 'Senha incorreta.'})
+
+            # Se o usuário estiver inativo, levante a exceção personalizada
+            if not user.is_active:
+                raise serializers.ValidationError('Esta conta está inativa.')
+
+        else:
+            raise serializers.ValidationError('E-mail e senha são necessários para fazer login.')
+
+        data['user'] = user
+        return data
+
+    def user_exists(self, email):
+        return self.get_user(email) is not None
+
+    def get_user(self, email):
+        UserModel = get_user_model()
+        try:
+            return UserModel._default_manager.get(email=email)
+        except UserModel.DoesNotExist:
+            return None
 
 class CarregarRecargaSerializer(serializers.ModelSerializer):
     id_do_usuario_dados = serializers.SerializerMethodField()
