@@ -21,7 +21,12 @@ class UsuarioSerializer(serializers.ModelSerializer):
                   'numero_de_conta',
                   'numero_do_contador',
                   'data_criacao']
-
+    
+    def create(self, validated_data):
+        # Cria o usuário
+        usuario = Usuario.objects.create(**validated_data)
+        
+        return usuario
 
 class CustomLoginSerializer(LoginSerializer):
     username=None
@@ -73,6 +78,29 @@ class CustomLoginSerializer(LoginSerializer):
             return UserModel._default_manager.get(email=email)
         except UserModel.DoesNotExist:
             return None
+
+User = get_user_model()
+class PasswordRedefinirEmailSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+
+    def validate_email(self, value):
+        if not User.objects.filter(email=value).exists():
+            raise serializers.ValidationError(("Este email não está registrado no banco de dados."))
+        return value
+    
+class PasswordRedefinirConfirmarSerializer(serializers.Serializer):
+    password1 = serializers.CharField(write_only=True)
+    password2 = serializers.CharField(write_only=True)
+    uidb64 = serializers.CharField(write_only=True)
+    token = serializers.CharField(write_only=True)
+
+    def validate(self, data):
+        """
+        Verifica se password1 e password2 são iguais.
+        """
+        if data['password1'] != data['password2']:
+            raise serializers.ValidationError("As palavras-passe não coincidem.")
+        return data
 
 class CarregarRecargaSerializer(serializers.ModelSerializer):
     id_do_usuario_dados = serializers.SerializerMethodField()

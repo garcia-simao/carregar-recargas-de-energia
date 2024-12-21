@@ -3,7 +3,7 @@ version: '3'
 services:
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8004
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
       - /home/garcia_simao/Documentos/Projectos_de_trabalho:/code/Documentos/Projectos_de_trabalho

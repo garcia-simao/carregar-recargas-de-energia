@@ -30,7 +30,7 @@ FIREBASE_CREDENTIALS2 = '/home/garcia_simao/Documentos/Projectos_de_trabalho/cha
 
 
 #inicializar o firebase admin sdk
-cred = credentials.Certificate(FIREBASE_CREDENTIALS2)
+cred = credentials.Certificate(FIREBASE_CREDENTIALS)
 firebase_admin.initialize_app(cred)
 
 
@@ -165,6 +165,20 @@ CORS_ALLOW_ALL_ORIGINS = True
 AUTH_USER_MODEL = 'core.Usuario'
 
 TOKEN_AUTH_HEADER = 'Bearer'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Substitua pelo servidor SMTP do seu provedor de e-mail
+EMAIL_PORT = 587  # Porta do servidor SMTP (587 é comum para TLS)
+EMAIL_USE_TLS = True  # Use TLS para criptografar a conexão
+
+# Substitua com seu endereço de e-mail e senha
+EMAIL_HOST_USER = 'investdominis2023@gmail.com'
+EMAIL_HOST_PASSWORD = 'iiequgcuwwqieoxp'
+
+# Endereço de e-mail padrão que aparecerá como remetente
+DEFAULT_FROM_EMAIL = 'investdominis2023@gmail.com'  # Substitua com o endereço que você deseja usar como remetente
+
 
 
 PASSWORD_HASHERS = [

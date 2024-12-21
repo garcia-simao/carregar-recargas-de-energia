@@ -7,6 +7,8 @@ from core.views import UsuarioViewSet
 from core.views import CarregarRecargaViewSet
 from core.views import InformacoesClienteViewSet
 from core.views import CustomLoginView
+from core.views import PasswordRedefinirEnviarEmailViewset
+from core.views import NovaPasswordRedefinirViewSet
 
 
 
@@ -19,5 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include(router.urls)),
     path('login/', CustomLoginView.as_view(), name='custom-login'),
+    path('email-redefinir-palavra-passe/', PasswordRedefinirEnviarEmailViewset.as_view(), name='palavra-passe'),
+    path('repor-password/', NovaPasswordRedefinirViewSet.as_view(), name='palavra-passe-confirmar'),
     path('api-auth',include('rest_framework.urls')),
 ]
