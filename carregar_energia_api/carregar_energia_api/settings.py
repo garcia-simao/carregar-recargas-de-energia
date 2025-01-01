@@ -21,12 +21,12 @@ from datetime import timedelta
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 #Caminho para executar o container com docker-compose up
-FIREBASE_CREDENTIALS = "/code/Documentos/Projectos_de_trabalho/chave_firebase/chave-do-fire-base.json"
+#FIREBASE_CREDENTIALS = "/code/Documentos/Projectos_de_trabalho/chave_firebase/chave-do-fire-base.json"
 
 #caminho para executar com python3 manage.py
-FIREBASE_CREDENTIALS2 = '/home/garcia_simao/Documentos/Projectos_de_trabalho/chave_firebase/chave-do-fire-base.json'
+#FIREBASE_CREDENTIALS2 = '/home/garcia_simao/Documentos/Projectos_de_trabalho/chave_firebase/chave-do-fire-base.json'
 
-
+FIREBASE_CREDENTIALS="chave-do-fire-base.json"
 
 
 #inicializar o firebase admin sdk
