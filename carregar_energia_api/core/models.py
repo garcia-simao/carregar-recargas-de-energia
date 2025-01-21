@@ -34,7 +34,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     nif = models.CharField(max_length=50, blank=True)
     email = models.EmailField(max_length=50, unique=True)
     endereco = models.CharField(max_length=50, blank=True)
-    password = models.CharField(max_length=50)
+    password = models.CharField(max_length=500)
     numero_de_conta = models.IntegerField()
     numero_do_contador = models.IntegerField()
     is_staff = models.BooleanField(default=True)
