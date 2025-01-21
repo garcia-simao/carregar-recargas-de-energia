@@ -9,13 +9,15 @@ from core.views import InformacoesClienteViewSet
 from core.views import CustomLoginView
 from core.views import PasswordRedefinirEnviarEmailViewset
 from core.views import NovaPasswordRedefinirViewSet
+from core.views import TotalCarregamentosViewSet
 
 
 
 router = routers.DefaultRouter()
 router.register(r'usuario', UsuarioViewSet)
-router.register(r'carregar-recarga', CarregarRecargaViewSet)
+router.register(r'carregar-recarga', CarregarRecargaViewSet, basename='carregar-recarga')
 router.register(r'informacoes-cliente', InformacoesClienteViewSet)
+router.register(r'total-de-carregamentos-usuario', TotalCarregamentosViewSet, basename='total-carregamentos')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

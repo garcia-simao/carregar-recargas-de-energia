@@ -16,6 +16,7 @@ from django.core.mail import send_mail
 from rest_framework.response import Response
 from django.utils.encoding import force_str
 from rest_framework import viewsets, status, generics
+from django.db.models import Q
 
 
 from .models import Usuario
@@ -27,7 +28,8 @@ from .serializers import InformacoesClienteSerializer
 from .serializers import CustomLoginSerializer
 from .serializers import PasswordRedefinirEmailSerializer
 from .serializers import PasswordRedefinirConfirmarSerializer
-
+from .models import CarregarRecarga
+from .serializers import CarregarRecargaSerializer
 
 class UsuarioViewSet(viewsets.ModelViewSet):
     queryset = Usuario.objects.all()
@@ -127,3 +129,27 @@ class NovaPasswordRedefinirViewSet(generics.GenericAPIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response({"message": "Falha ao redefinir a palavra passe"}, status=status.HTTP_400_BAD_REQUEST)     
+
+class TotalCarregamentosViewSet(viewsets.ModelViewSet):
+    queryset = CarregarRecarga.objects.all()
+    serializer_class = CarregarRecargaSerializer
+    
+    
+    def list(self, request, *args, **kwargs):
+        usuario = self.request.query_params.get('usuario') 
+        queryset = CarregarRecarga.objects.filter(Q(id_do_usuario=usuario))
+        
+        if usuario:
+            contagem = queryset.count()
+            
+            data = { 
+                        'total_de_recargar_efectuadas':contagem,
+                        
+                        
+                    }
+
+            return Response(data)
+        else:
+            queryset
+            serializer = CarregarRecargaSerializer(queryset, many=True)
+            return Response(serializer.data) 

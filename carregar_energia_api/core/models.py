@@ -30,10 +30,10 @@ class UsuarioManager(BaseUserManager):
 class Usuario(AbstractBaseUser, PermissionsMixin):
     nome = models.CharField(max_length=50)
     sobrenome = models.CharField(max_length=50)
-    telefone = models.CharField(max_length=50)
-    nif = models.CharField(max_length=50)
+    telefone = models.CharField(max_length=50, blank=True)
+    nif = models.CharField(max_length=50, blank=True)
     email = models.EmailField(max_length=50, unique=True)
-    endereco = models.CharField(max_length=50)
+    endereco = models.CharField(max_length=50, blank=True)
     password = models.CharField(max_length=50)
     numero_de_conta = models.IntegerField()
     numero_do_contador = models.IntegerField()
