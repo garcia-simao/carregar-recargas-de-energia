@@ -14,7 +14,7 @@ from pathlib import Path
 import firebase_admin
 from firebase_admin import credentials
 from datetime import timedelta
-
+import os
 
 
 #caminho para o arquivo json 
@@ -182,6 +182,11 @@ CORS_ALLOW_ALL_ORIGINS = True
 AUTH_USER_MODEL = 'core.Usuario'
 
 TOKEN_AUTH_HEADER = 'Bearer'
+
+
+#configuração para o django aceder a pasta dos arquivos de mídea da raíz do computador 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

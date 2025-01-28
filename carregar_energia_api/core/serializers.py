@@ -20,6 +20,7 @@ class UsuarioSerializer(serializers.ModelSerializer):
                   'password', 
                   'numero_de_conta',
                   'numero_do_contador',
+                  'imagem_usuario',
                   'data_criacao']
     
     def create(self, validated_data):

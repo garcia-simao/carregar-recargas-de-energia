@@ -37,6 +37,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     password = models.CharField(max_length=500)
     numero_de_conta = models.IntegerField()
     numero_do_contador = models.IntegerField()
+    imagem_usuario = models.ImageField(upload_to='', blank=True)
     is_staff = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
