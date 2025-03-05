@@ -104,31 +104,25 @@ WSGI_APPLICATION = 'carregar_energia_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-
+"""""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
 """""
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'appdb',
-        'USER': 'root',
-        'PASSWORD': 'Silviosimons1234',
-        'HOST': 'emhtcellotyoasg.clouds2africa.com',
-        'PORT': '1828',
-        'OPTIONS':{
-        'charset': 'utf8mb4',
-        'init_command': "SET sql_mode= 'STRICT_TRANS_TABLES'",
-        }
+        'NAME': 'CarregarEnergia',
+        'USER': 'garcia',
+        'PASSWORD': 'Inovhub!0%',
+        'HOST': '102.219.126.94',
+        'PORT': '3306',
     }
 }
-"""""
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
