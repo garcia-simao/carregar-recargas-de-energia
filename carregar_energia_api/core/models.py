@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from firebase_admin import firestore
+from .firebase_config import db
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager,PermissionsMixin
 
@@ -93,8 +94,7 @@ class InformacoesCliente(models.Model):
 @receiver(post_save, sender=CarregarRecarga)
 def enviar_para_firebase(sender, instance, created, **kwargs):
     if created:
-        # Conectar ao Firestore
-        db = firestore.client()
+        
 
         # Formatar os dados
         dados = {
@@ -116,4 +116,4 @@ def enviar_para_firebase(sender, instance, created, **kwargs):
         }
 
         # Enviar os dados para o Firestore na coleção `CarregarRecarga`
-        db.collection("CarregarRecarga").document(str(instance.id)).set(dados)
+        db.child("Recargas").push(dados)
