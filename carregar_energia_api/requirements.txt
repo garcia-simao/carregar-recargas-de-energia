@@ -30,3 +30,4 @@ urllib3==2.0.6
 mysqlclient==2.2.0
 unstructured-client==0.23.7
 firebase-admin == 6.6.0
+Pyrebase4      == 4.8.0
